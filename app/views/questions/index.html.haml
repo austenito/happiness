@@ -1,0 +1,9 @@
+%h1= @text
+
+= form_for :question do |form|
+  = form.label :answer
+  = form.text_field :answer
+  = form.submit "Submit"
+  = hidden_field_tag :id, @question_id
+  = hidden_field_tag :submit_url, @submit_url
+

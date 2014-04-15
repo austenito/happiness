@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'faraday'
+gem 'haml-rails'
 gem 'rails', '4.0.4'
 gem 'pg'
 
