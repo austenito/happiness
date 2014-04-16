@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'faraday'
 gem 'haml-rails'
 gem 'rails', '4.0.4'
+gem 'roar-rails'
 gem 'pg'
 
 group :production do

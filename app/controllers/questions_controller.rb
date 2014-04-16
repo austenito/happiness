@@ -1,31 +1,17 @@
 class QuestionsController < ApplicationController
 
   def index
-    connection = create_connection
-    response = connection.get do |req|
-       req.url("/api/surveys/#{params[:survey_id]}")
-       req.headers['Content-Type'] = 'application/json'
-    end
+    survey = Survey.for_id(params[:survey_id])
+    @survey_question = survey.next_question
 
-    parsed_response = JSON.parse(response.body)
-    links = parsed_response['_links']
-    if links['next']
-      response = Faraday.get(links['next']['href'])
-      parsed_response = JSON.parse(response.body)
-      @text = parsed_response['text']
-      @question_id = parsed_response['id']
-      @submit_url = links['submit']['href']
-    else
+    if @survey_question.blank?
       redirect_to surveys_path
     end
   end
 
   def create
-    response = Faraday.post(params[:submit_url] + ".json", { id: params[:id], survey_question: { answer: params[:question][:answer] } })
-
-    parsed_response = JSON.parse(response.body)
-    survey_response = Faraday.get(parsed_response['_links']['survey']['href'])
-    parsed_response = JSON.parse(survey_response.body)
-    redirect_to survey_questions_path(parsed_response['id'])
+    survey_question = SurveyQuestion.new(id: params[:id], answer: params[:survey_question][:answer], submit_url: params[:submit_url])
+    survey_question = survey_question.submit_answer
+    redirect_to survey_questions_path(survey_question.survey.id)
   end
 end
