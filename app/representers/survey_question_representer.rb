@@ -5,6 +5,7 @@ module SurveyQuestionRepresenter
   property :text
   property :type
   property :answer
+  property :responses
 
   link :self do
   end

@@ -1,7 +1,7 @@
 class SurveyQuestion
   extend Request
 
-  attr_accessor :id, :text, :type, :answer
+  attr_accessor :id, :text, :type, :answer, :responses
 
   def initialize(params = {})
     @id = params[:id]
@@ -28,7 +28,7 @@ class SurveyQuestion
   end
 
   def multiple?
-    type == "BooleanQueston"
+    type == "MultipleResponseQuestion"
   end
 
   def survey
