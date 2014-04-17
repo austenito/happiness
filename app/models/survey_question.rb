@@ -20,7 +20,7 @@ class SurveyQuestion
   end
 
   def boolean?
-    type == "BooleanQueston"
+    type == "BooleanQuestion"
   end
 
   def range?

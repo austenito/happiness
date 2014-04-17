@@ -3,6 +3,11 @@ class Survey
 
   attr_accessor :id
 
+  def self.create
+    response = post("/api/surveys")
+    Survey.new.extend(SurveyRepresenter).from_json(response.body)
+  end
+
   def self.for_id(id)
     response = get("/api/surveys/#{id}")
     Survey.new.extend(SurveyRepresenter).from_json(response.body)

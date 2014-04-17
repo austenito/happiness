@@ -6,6 +6,13 @@ module Request
     end
   end
 
+  def post(url, data = {})
+    connection.post do |req|
+      req.url(url)
+      req.headers['Content-Type'] = 'application/json'
+    end
+  end
+
   def connection
     return @connection if @connection
 

@@ -5,6 +5,7 @@ gem 'haml-rails'
 gem 'rails', '4.0.4'
 gem 'roar-rails'
 gem 'pg'
+gem 'simple_form'
 
 group :production do
   gem 'unicorn'
