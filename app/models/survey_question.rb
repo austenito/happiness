@@ -15,11 +15,11 @@ class SurveyQuestion
   end
 
   def submit_answer
-    response = Faraday.post(submit_url + ".json", { id: id, survey_question: { answer: answer} })
-    SurveyQuestion.new.extend(SurveyQuestionRepresenter).from_json(response.body)
-  end
+r   response = Faraday.post(submit_url + ".json", { id: id, survey_question: { answer: answer} })
+r   SurveyQuestion.new.extend(SurveyQuestionRepresenter).from_json(response.body)
+r end
 
-  def boolean?
+r def boolean?
     type == "BooleanQuestion"
   end
 

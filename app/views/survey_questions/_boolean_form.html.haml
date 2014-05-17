@@ -1,6 +1,6 @@
-= simple_form_for :survey_question do |form|
+= simple_form_for :survey_question, method: :put do |form|
   = form.input :answer, as: :radio_buttons, collection: [[true, 'True'] ,[false, 'False']], label_method: :last, value_method: :first
   = form.submit "Submit"
   = hidden_field_tag :id, @survey_question.id
-  = hidden_field_tag :submit_url, @survey_question.submit_url
+  = hidden_field_tag :submit_url, @survey_question.links.submit.href
 

@@ -4,6 +4,7 @@ class Survey
   attr_accessor :id
 
   def self.create
+    survey = Poptart::Survey.create_random
     response = post("/api/surveys")
     Survey.new.extend(SurveyRepresenter).from_json(response.body)
   end

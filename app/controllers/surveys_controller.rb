@@ -4,7 +4,7 @@ class SurveysController < ApplicationController
   end
 
   def create
-    survey = Survey.create
-    redirect_to survey_questions_path(survey.id)
+    survey = Poptart::Survey.create_random
+    redirect_to survey_survey_question_path(survey.id, survey.survey_questions.first.id)
   end
 end

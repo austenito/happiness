@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'poptart', path: '/Users/austenito/repos/poptart'
 gem 'faraday'
 gem 'haml-rails'
 gem 'rails', '4.0.4'
@@ -16,6 +17,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'capybara-webkit'
+  gem 'launchy'
 end
 
 gem 'sass-rails', '~> 4.0.0'

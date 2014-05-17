@@ -3,4 +3,4 @@
     = form.input :answer, as: :radio_buttons, collection: [[response, response]], label_method: :last, value_method: :first
   = form.submit "Submit"
   = hidden_field_tag :id, @survey_question.id
-  = hidden_field_tag :submit_url, @survey_question.submit_url
+  = hidden_field_tag :submit_url, @survey_question.links.submit.href
