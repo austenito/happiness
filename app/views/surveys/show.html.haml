@@ -1,2 +1,6 @@
 - if @survey.complete?
-  Thanks for submitting your survey
+  %h1 Thanks for submitting your survey
+  - @survey.survey_questions.each do |survey_question|
+    %h2= survey_question.text
+    %p= survey_question.answer
+
