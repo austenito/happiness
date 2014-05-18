@@ -1,27 +1,21 @@
 class Survey
-  extend Request
+  attr_accessor :survey, :survey_questions
+  delegate :id, :add_question, :survey_question_for_id, to: :survey
 
-  attr_accessor :id
-
-  def self.create
-    survey = Poptart::Survey.create_random
-    response = post("/api/surveys")
-    Survey.new.extend(SurveyRepresenter).from_json(response.body)
+  def initialize(survey)
+    @survey = survey
+    @survey_questions = survey.survey_questions.sort_by { |survey_question| survey_question.id }
   end
 
   def self.for_id(id)
-    response = get("/api/surveys/#{id}")
-    Survey.new.extend(SurveyRepresenter).from_json(response.body)
+    new(Poptart::Survey.for_id(id))
   end
 
-  def self.for_url(url)
-    response = Faraday.get(url)
-    Survey.new.extend(SurveyRepresenter).from_json(response.body)
+  def complete?
+    next_question ? false : true
   end
 
   def next_question
-    if links['next']
-      SurveyQuestion.for_url(links['next']['href'])
-    end
+    @survey_questions.find { |question| question.answer.nil? }
   end
 end

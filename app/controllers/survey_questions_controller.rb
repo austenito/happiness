@@ -1,7 +1,7 @@
 class SurveyQuestionsController < ApplicationController
 
   def index
-    survey = Poptart::Survey.for_id(params[:survey_id])
+    survey = Survey.for_id(params[:survey_id])
     @survey_question = survey.next_question
 
     if @survey_question.blank?
@@ -10,20 +10,20 @@ class SurveyQuestionsController < ApplicationController
   end
 
   def show
-    survey = Poptart::Survey.for_id(params[:survey_id])
-    @survey_question = survey.survey_question_for_id(params[:id].to_i)
+    @survey = Survey.for_id(params[:survey_id])
+    @survey_question = @survey.survey_question_for_id(params[:id].to_i)
   end
 
   def update
-    survey = Poptart::Survey.for_id(params[:survey_id])
+    survey = Survey.for_id(params[:survey_id])
     survey_question = survey.survey_question_for_id(params[:id])
     survey_question.answer = params[:survey_question][:answer]
     survey_question.submit
 
     if survey.complete?
-      redirect_to survey_questions_path(survey_question.survey.id)
+      redirect_to survey_path(params[:survey_id])
     else
-
+      redirect_to survey_survey_question_path(survey.id, survey.next_question.id)
     end
   end
 end
