@@ -17,7 +17,11 @@ class SurveyQuestionsController < ApplicationController
   def update
     survey = Survey.for_id(params[:survey_id])
     survey_question = survey.survey_question_for_id(params[:id])
-    survey_question.answer = params[:survey_question][:answer]
+    if survey_question.time?
+      survey_question.answer = "#{params[:survey_question]['answer(4i)']}:#{params[:survey_question]['answer(5i)']}"
+    else
+      survey_question.answer = params[:survey_question][:answer]
+    end
     survey_question.submit
 
     if survey.complete?

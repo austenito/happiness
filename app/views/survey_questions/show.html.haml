@@ -6,6 +6,8 @@
   = render partial: "multiple_response_form"
 - elsif @survey_question.range?
   = render partial: "range_form"
+- elsif @survey_question.time?
+  = render partial: "time_form"
 - else
   = @survey_question.type
   = simple_form_for :survey_question do |form|
