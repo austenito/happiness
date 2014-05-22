@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'devise'
 gem 'poptart', path: '/Users/austenito/repos/poptart'
 gem 'faraday'
 gem 'haml-rails'
