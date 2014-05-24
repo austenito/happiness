@@ -14,6 +14,9 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 Capybara.javascript_driver = :webkit
 
+include Warden::Test::Helpers
+Warden.test_mode!
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
@@ -41,4 +44,5 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  config.include FactoryGirl::Syntax::Methods
 end

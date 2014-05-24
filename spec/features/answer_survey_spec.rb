@@ -1,8 +1,11 @@
 require 'spec_helper'
 
 feature 'Answering a scenario' do
-  scenario 'it answers a survey', :vcr, record: :all do
-    survey = Poptart::Survey.create
+  scenario 'it answers a survey', :vcr do
+    user = create(:user)
+    Poptart::User.create(user.id)
+
+    survey = user.create_survey
     boolean_question = Poptart::Question.all(type: 'boolean').first
     multiple_question = Poptart::Question.all(type: 'multiple').first
     range_question = Poptart::Question.all(type: 'range').first
@@ -12,12 +15,13 @@ feature 'Answering a scenario' do
     survey.add_question(range_question)
     survey.add_question(time_question)
 
-    survey = Poptart::Survey.for_id(survey.id)
+    survey = user.survey_for_id(survey.id)
     boolean_survey_question = survey.survey_questions[0]
     multiple_survey_question = survey.survey_questions[1]
     range_survey_question = survey.survey_questions[2]
     time_survey_question = survey.survey_questions[3]
 
+    login_as(user, scope: :user)
     visit survey_survey_question_path(survey.id, boolean_survey_question.id)
 
     page.should have_content boolean_survey_question.text
