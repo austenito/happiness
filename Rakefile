@@ -4,3 +4,9 @@
 require File.expand_path('../config/application', __FILE__)
 
 Happiness::Application.load_tasks
+
+namespace :spec do
+  task :clean do
+    FileUtils.rm_rf(Dir.glob('spec/vcr/*'))
+  end
+end
