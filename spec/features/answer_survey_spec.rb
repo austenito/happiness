@@ -25,6 +25,9 @@ feature 'Answering a scenario' do
     visit survey_survey_question_path(survey.id, boolean_survey_question.id)
 
     page.should have_content boolean_survey_question.text
+    click_on 'Submit'
+    page.should have_content boolean_survey_question.text
+    page.should have_content 'You must answer the question'
     choose('True')
     click_on 'Submit'
 
