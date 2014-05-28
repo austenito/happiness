@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'devise'
-gem 'poptart', path: '/Users/austenito/repos/poptart'
+gem 'poptart'
 gem 'faraday'
 gem 'haml-rails'
 gem 'rails', '4.0.4'
