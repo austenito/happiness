@@ -16,7 +16,11 @@ test:
   pool: 5
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: happiness_production
+  template: template0
   pool: 5
-  timeout: 5000
+  host: <%= ENV['DB_PORT_5432_TCP_ADDR'] %>
+  username: <%= ENV['DB_ENV_POSTGRES_USER'] %>
+  password: <%= ENV['DB_ENV_POSTGRES_PASSWORD'] %>

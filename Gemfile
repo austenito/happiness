@@ -10,6 +10,7 @@ gem 'pg'
 gem 'simple_form'
 
 group :production do
+  gem 'le'
   gem 'unicorn'
 end
 
