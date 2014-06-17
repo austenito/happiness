@@ -12,6 +12,8 @@ gem 'simple_form'
 group :production do
   gem 'le'
   gem 'unicorn'
+  gem 'execjs'
+  gem 'therubyracer', :platforms => :ruby
 end
 
 group :development, :test do
