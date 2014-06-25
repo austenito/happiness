@@ -23,6 +23,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara-webkit'
   gem 'launchy'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 gem 'sass-rails', '~> 4.0.0'
