@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature 'Answering a scenario' do
   scenario 'it answers a survey', :vcr do
-    user = create(:user)
-    Poptart::User.create(user.id)
+    user = create(:user, external_user_id: "testing")
+    Poptart::User.create("testing")
 
     survey = user.create_survey
     boolean_question = Poptart::Question.all(type: 'boolean').first

@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :service_user
 
+  after_create :generate_external_user_id
+
   def create_survey
     service_user.create_survey
   end
@@ -17,6 +19,14 @@ class User < ActiveRecord::Base
   end
 
   def service_user
-    @service_user ||= Poptart::User.for_id(id)
+    @service_user ||= Poptart::User.for_id(external_user_id)
+  end
+
+  private
+
+  def generate_external_user_id
+    unless self.external_user_id
+      self.external_user_id = Digest::SHA512.hexdigest(Time.now.to_s + "nyan")
+    end
   end
 end
