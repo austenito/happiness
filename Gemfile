@@ -14,6 +14,7 @@ group :production do
   gem 'unicorn'
   gem 'execjs'
   gem 'therubyracer', :platforms => :ruby
+  gem 'libv8'
 end
 
 group :development, :test do
