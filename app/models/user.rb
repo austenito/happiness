@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :service_user
 
-  after_create :generate_external_user_id
+  before_create :generate_external_user_id
   after_create :create_service_user
 
   def create_survey
