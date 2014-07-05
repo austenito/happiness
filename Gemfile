@@ -17,15 +17,18 @@ group :production do
   gem 'libv8'
 end
 
-group :development, :test do
-  gem 'faker'
+group :development do
   gem 'pry-rails'
+end
+
+group :test do
+  gem 'faker'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  gem 'capybara-webkit'
-  gem 'launchy'
   gem 'vcr'
   gem 'webmock'
+  gem 'capybara-webkit'
+  gem 'launchy'
 end
 
 gem 'sass-rails', '~> 4.0.0'
