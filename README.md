@@ -1,3 +1,5 @@
+[Build](https://travis-ci.org/austenito/happiness.svg?branch=master)
+
 happiness
 =========
 
