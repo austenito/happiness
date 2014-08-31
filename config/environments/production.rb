@@ -77,7 +77,7 @@ Happiness::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_level = :info
-  config.logger = Logger.new('/apps/log/happiness_service_production.log', 10, 100_000_000)
+  config.logger = Logger.new('/apps/log/happiness_production.log', 10, 100_000_000)
 end
 
 Rails.logger = Le.new(ENV['LOGENTRIES_HAPPINESS_TOKEN'])
