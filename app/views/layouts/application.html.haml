@@ -2,8 +2,23 @@
 %html
   %head
     %title Happiness
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", :rel => "stylesheet"}
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
+    %nav.navbar.navbar-default{:role => "navigation"}
+      .container
+        .navbar-header
+          %a.navbar-brand{:href => "#"} Happiness Log
+        %ul.nav.navbar-nav.navbar-right
+          - if current_user
+            %li= link_to 'Surveys', surveys_path
+            %li= link_to 'Log out', destroy_user_session_path, method: :delete
+          - else
+            %li= link_to 'Sign in', new_user_session_path
+            %li= link_to 'Sign up', new_user_registration_path
+
     = flash[:error]
     = yield
+    %script{:src => "//code.jquery.com/jquery-1.11.0.min.js"}
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"}

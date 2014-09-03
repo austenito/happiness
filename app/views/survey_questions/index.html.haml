@@ -1,13 +1,16 @@
-%h1= @survey_question.text
+.container
+  .row
+    .col-sm-12
+      %h1= @survey_question.text
 
-- if @survey_question.boolean?
-  = render partial: "boolean_form"
-- elsif @survey_question.multiple?
-  = render partial: "multiple_response_form"
-- else
-  = simple_form_for :survey_question do |form|
-    = form.input :answer
-    = form.submit "Submit"
-    = hidden_field_tag :id, @survey_question.id
-    = hidden_field_tag :submit_url, @survey_question.submit_url
+      - if @survey_question.boolean?
+        = render partial: "boolean_form"
+      - elsif @survey_question.multiple?
+        = render partial: "multiple_response_form"
+      - else
+        = simple_form_for :survey_question do |form|
+          = form.input :answer
+          = form.submit "Submit", class: 'btn btn-primary'
+          = hidden_field_tag :id, @survey_question.id
+          = hidden_field_tag :submit_url, @survey_question.submit_url
 

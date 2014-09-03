@@ -1,7 +1,10 @@
-= simple_form_for :survey_question, method: :put do |form|
-  = form.input :answer, as: :radio_buttons, collection: [[true, 'True'] ,[false, 'False']], label_method: :last, value_method: :first
-  = form.submit "Submit"
-  = hidden_field_tag :survey_id, @survey.id
-  = hidden_field_tag :id, @survey_question.id
-  = hidden_field_tag :submit_url, @survey_question.links.submit.href
+.container
+  .row
+    .col-sm-12
+      = simple_form_for :survey_question, method: :put do |form|
+        = form.input :answer, as: :radio_buttons, collection: [[true, 'True'] ,[false, 'False']], label: false, label_method: :last, value_method: :first
+        = form.submit "Submit", class: 'btn btn-primary'
+        = hidden_field_tag :survey_id, @survey.id
+        = hidden_field_tag :id, @survey_question.id
+        = hidden_field_tag :submit_url, @survey_question.links.submit.href
 
