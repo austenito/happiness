@@ -22,7 +22,11 @@ class SurveyQuestionsController < ApplicationController
       if survey_question.time?
         survey_question.answer = "#{params[:survey_question]['answer(4i)']}:#{params[:survey_question]['answer(5i)']}"
       else
-        survey_question.answer = params[:survey_question][:answer]
+        if params[:survey_question][:freeform_answer]
+          survey_question.answer = params[:survey_question][:freeform_answer]
+        else
+          survey_question.answer = params[:survey_question][:answer]
+        end
       end
 
       if survey_question.submit
