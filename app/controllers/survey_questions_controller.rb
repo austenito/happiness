@@ -22,7 +22,7 @@ class SurveyQuestionsController < ApplicationController
       if survey_question.time?
         survey_question.answer = "#{params[:survey_question]['answer(4i)']}:#{params[:survey_question]['answer(5i)']}"
       else
-        if params[:survey_question][:freeform_answer]
+        if params[:survey_question][:freeform_answer].present?
           survey_question.answer = params[:survey_question][:freeform_answer]
         else
           survey_question.answer = params[:survey_question][:answer]
@@ -35,6 +35,9 @@ class SurveyQuestionsController < ApplicationController
         else
           redirect_to survey_survey_question_path(survey.id, survey.next_question.id)
         end
+      else
+        flash[:error] = 'You must answer the question'
+        redirect_to survey_survey_question_path(survey.id, survey_question.id)
       end
     else
       flash[:error] = 'You must answer the question'
