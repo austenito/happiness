@@ -18,26 +18,13 @@ class SurveyQuestionsController < ApplicationController
   def update
     survey = current_user.survey_for_id(params[:survey_id])
     survey_question = survey.survey_question_for_id(params[:id])
-    if params[:survey_question]
-      if survey_question.time?
-        survey_question.answer = "#{params[:survey_question]['answer(4i)']}:#{params[:survey_question]['answer(5i)']}"
-      else
-        if params[:survey_question][:freeform_answer].present?
-          survey_question.answer = params[:survey_question][:freeform_answer]
-        else
-          survey_question.answer = params[:survey_question][:answer]
-        end
-      end
+    survey_question.update(params)
 
-      if survey_question.submit
-        if survey.complete?
-          redirect_to survey_path(params[:survey_id])
-        else
-          redirect_to survey_survey_question_path(survey.id, survey.next_question.id)
-        end
+    if params[:survey_question] && survey_question.submit
+      if survey.complete?
+        redirect_to survey_path(params[:survey_id])
       else
-        flash[:error] = 'You must answer the question'
-        redirect_to survey_survey_question_path(survey.id, survey_question.id)
+        redirect_to survey_survey_question_path(survey.id, survey.next_question.id)
       end
     else
       flash[:error] = 'You must answer the question'
