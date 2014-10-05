@@ -25,7 +25,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
-    addressable (2.3.5)
+    addressable (2.3.6)
     arel (4.0.2)
     bcrypt (3.1.7)
     builder (3.1.4)
@@ -99,8 +99,9 @@ GEM
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.4)
-    poptart (0.0.5)
+    poptart (0.0.9)
       activesupport
+      addressable
       faraday
       hashie
     pry (0.9.12.6)

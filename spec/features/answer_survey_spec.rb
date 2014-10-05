@@ -5,54 +5,43 @@ feature 'Answering a scenario' do
     user = create(:user)
 
     survey = user.create_survey
-    boolean_question = Poptart::Question.all(type: 'boolean').first
-    multiple_questions = Poptart::Question.all(type: 'multiple')
-    multiple_question = Poptart::Question.all(type: 'multiple').first
-    freeform_question = multiple_questions.reverse.find { |question| question.freeform? }
-    range_question = Poptart::Question.all(type: 'range').first
-    time_question = Poptart::Question.all(type: 'time').first
-    survey.add_question(boolean_question)
+    boolean_question = Poptart::BooleanQuestion.create('Do you like poptarts?')
+    multiple_question = Poptart::MultipleResponseQuestion.create('Why do you eat poptarts?', responses: ["It's good", "It's bad"], freeform: true)
+    range_question = Poptart::RangeQuestion.create("How much do you like poptarts", responses: [0, 10])
+    time_question = Poptart::TimeQuestion.create("When do you eat poptarts")
+    boolean_survey_question =  survey.add_question(boolean_question)
     survey.add_question(multiple_question)
-    survey.add_question(freeform_question)
     survey.add_question(range_question)
     survey.add_question(time_question)
-
-    survey = user.survey_for_id(survey.id)
-    boolean_survey_question = survey.survey_questions[0]
-    multiple_survey_question = survey.survey_questions[1]
-    freeform_survey_question = survey.survey_questions[2]
-    range_survey_question = survey.survey_questions[3]
-    time_survey_question = survey.survey_questions[4]
 
     login_as(user, scope: :user)
     visit survey_survey_question_path(survey.id, boolean_survey_question.id)
 
-    page.should have_content boolean_survey_question.text
+    page.should have_content 'Do you like poptarts'
     click_on 'Submit'
-    page.should have_content boolean_survey_question.text
     page.should have_content 'You must answer the question'
     choose('True')
     click_on 'Submit'
 
-    page.should have_content multiple_survey_question.text
-    choose(multiple_survey_question.responses.first)
+    page.should have_content 'Why do you eat poptarts?'
+    page.should have_content "It's good"
+    page.should have_content "It's bad"
+    fill_in 'survey_question[freeform_answer]', with: 'I want to'
     click_on 'Submit'
 
-    page.should have_content freeform_survey_question.text
-    fill_in 'survey_question[freeform_answer]', with: 'Poptarts'
+    page.should have_content "How much do you like poptarts"
+    choose(10)
     click_on 'Submit'
 
-    page.should have_content range_survey_question.text
-    choose(range_survey_question.responses.last)
+    page.should have_content "When do you eat poptarts"
+    all('select.time').first.select('10')
+    all('select.time').last.select('42')
     click_on 'Submit'
 
-    page.should have_content time_survey_question.text
-    click_on 'Submit'
-
-    page.should have_content 't'
-    page.should have_content multiple_survey_question.responses.first
-    page.should have_content 'Poptarts'
-    page.should have_content range_survey_question.responses.last
+    page.should have_content 'true'
+    page.should have_content 'I want to'
+    page.should have_content '10'
+    page.should have_content '10:42'
     page.should have_content 'Thanks for submitting your survey'
   end
 end
