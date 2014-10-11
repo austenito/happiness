@@ -4,5 +4,7 @@
       = form_for :survey do |f|
         = f.submit "Create survey", class: 'btn btn-primary'
 
-      
+  .row
+    .col-sm-12
+      .happiness-per-day-chart{data: { "day-happiness-chart" => @day_to_happiness.to_json } }
 
