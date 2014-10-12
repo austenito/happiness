@@ -5,5 +5,5 @@ Happiness::Application.routes.draw do
   end
 
   resource :home, only: [:index]
-  root to: 'home#index'
+  root to: 'surveys#index'
 end
