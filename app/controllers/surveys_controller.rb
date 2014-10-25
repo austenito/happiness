@@ -6,6 +6,10 @@ class SurveysController < ApplicationController
     chart = HappinessDayChart.new(current_user)
     chart.calculate
     @day_to_happiness = chart.day_to_happiness
+
+    place_chart = HappinessPlaceChart.new(current_user)
+    place_chart.calculate
+    @place_to_happiness = place_chart.place_to_happiness
   end
 
   def show

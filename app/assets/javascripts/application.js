@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require happinessPerDayChart
+//= require underscore
 //= require highcharts
+//= require happinessPerDayChart
+//= require happinessPerPlaceChart

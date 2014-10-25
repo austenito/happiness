@@ -1,23 +1,17 @@
 $ ->
-  day_data = $(".happiness-per-day-chart").data('day-happiness-chart')
+  place_data = $(".happiness-per-place-chart").data('place-happiness-chart')
+  places = _.keys(place_data)
+  data = _.values(place_data)
 
-  $(".happiness-per-day-chart").highcharts
+  $(".happiness-per-place-chart").highcharts
     chart:
       type: "column"
 
     title:
-      text: "How do you feel each day?"
+      text: "Where do you feel the best?"
 
     xAxis:
-      categories: [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ]
+      categories: places
 
     yAxis:
       min: 0
@@ -40,14 +34,6 @@ $ ->
     series: [
       {
         name: "How do you feel from 0 - 10"
-        data: [
-          day_data[0] || 0,
-          day_data[1] || 0,
-          day_data[2] || 0,
-          day_data[3] || 0,
-          day_data[4] || 0,
-          day_data[5] || 0,
-          day_data[6] || 0
-        ]
+        data: data
       }
     ]

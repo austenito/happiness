@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     @service_user ||= Poptart::User.for_id(service_user_id)
   end
 
+  def surveys
+    service_user.surveys
+  end
+
   private
 
   def create_service_user
