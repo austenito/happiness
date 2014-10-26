@@ -99,7 +99,7 @@ GEM
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.4)
-    poptart (0.0.12)
+    poptart (0.0.13)
       activesupport
       addressable
       faraday
