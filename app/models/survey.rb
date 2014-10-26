@@ -5,7 +5,6 @@ class Survey
   def initialize(survey)
     @survey = survey
     @survey_questions = survey.survey_questions.map { |survey_question| SurveyQuestion.new(survey_question) }
-    @survey_questions = @survey_questions.sort_by { |survey_question| survey_question.id }
   end
 
   def self.for_id(id)
