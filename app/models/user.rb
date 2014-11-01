@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     service_user.surveys
   end
 
+  def time_zone
+    'Eastern Time (US & Canada)'
+  end
+
   private
 
   def create_service_user
