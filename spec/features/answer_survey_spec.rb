@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'Answering a scenario' do
   scenario 'it answers a survey', :vcr do
     user = create(:user)
+    Poptart.authorize(service_user_id: user.service_user_id, user_token: user.token)
 
     survey = user.create_survey
     boolean_question = Poptart::BooleanQuestion.create('Do you like poptarts?')
@@ -35,13 +36,13 @@ feature 'Answering a scenario' do
 
     page.should have_content "When do you eat poptarts"
     all('select.time').first.select('10')
-    all('select.time').last.select('42')
+    all('select.time').last.select('45')
     click_on 'Submit'
 
     page.should have_content 'true'
     page.should have_content 'I want to'
     page.should have_content '10'
-    page.should have_content '10:42'
+    page.should have_content '10:45'
     page.should have_content 'Thanks for submitting your survey'
   end
 end
