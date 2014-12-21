@@ -6,6 +6,6 @@
 
   .row
     .col-sm-12
-      .happiness-per-day-chart{data: { "day-happiness-chart" => @day_to_happiness.to_json } }
-      .happiness-per-place-chart{data: { "place-happiness-chart" => @place_to_happiness.to_json } }
+      .happiness-per-day-chart(ng-controller='dayChartsController')
+      .happiness-per-place-chart(ng-controller='placeChartsController')
 

@@ -2,14 +2,6 @@ class SurveysController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @days_of_the_week = Date::DAYNAMES
-    chart = HappinessDayChart.new(current_user)
-    chart.calculate
-    @day_to_happiness = chart.day_to_happiness
-
-    place_chart = HappinessPlaceChart.new(current_user)
-    place_chart.calculate
-    @place_to_happiness = place_chart.place_to_happiness
   end
 
   def show
