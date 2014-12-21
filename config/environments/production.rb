@@ -72,6 +72,7 @@ Happiness::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
+  config.assets.js_compressor = Uglifier.new(mangle: false)
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
 end
