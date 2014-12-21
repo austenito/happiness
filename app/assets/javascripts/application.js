@@ -16,3 +16,5 @@
 //= require highcharts
 //= require happinessPerDayChart
 //= require happinessPerPlaceChart
+//= require angular
+//= require app
