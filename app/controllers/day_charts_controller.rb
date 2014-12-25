@@ -2,6 +2,9 @@ class DayChartsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with HappinessDayChart.new(current_user).calculate
+    respond_with(
+      categories: Date::DAYNAMES,
+      values: HappinessDayChart.new(current_user).calculate
+    )
   end
 end
