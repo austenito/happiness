@@ -6,8 +6,8 @@
 
   .row
     .col-sm-12
-      .happiness-per-day(ng-controller='dayChartsController')
-        .happiness-per-day-chart{'bar-chart' => '', 'chart-data' => 'chartData', 'chart-type' => 'day', title: 'How do you feel each day?', min: 0, max: 10 }
-      .happiness-per-place(ng-controller='placeChartsController')
-        .happiness-per-place-chart{'bar-chart' => '', 'chart-data' => 'chartData', 'chart-type' => 'place', title: 'Where do you feel the best?', min: 0, max: 10 }
+      .happinessCharts(ng-controller='chartsController')
+        .happiness-per-day-chart{'bar-chart' => '', 'chart-data' => 'dayChartData', 'chart-type' => 'day', title: 'How do you feel each day?', min: 0, max: 10 }
+        .happiness-per-place-chart{'bar-chart' => '', 'chart-data' => 'placeChartData', 'chart-type' => 'place', title: 'Where do you feel the best?', min: 0, max: 10 }
+        .happiness-per-place-activity{'bar-chart' => '', 'chart-data' => 'activityChartData', 'chart-type' => 'place', title: 'How do you feel doing what?', min: 0, max: 10 }
 
