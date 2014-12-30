@@ -13,7 +13,7 @@ class ActivityChart
         what_are_you_doing = survey.survey_questions.find { |survey_question| survey_question.key == 'what_are_you_doing' }
 
         if what_are_you_doing
-          key = what_are_you_doing.answer.to_sym
+          key = what_are_you_doing.answer.downcase.to_sym
           values = activity_to_happiness[key] << how_do_you_feel.answer.to_i
           activity_to_happiness[key] = values
         end

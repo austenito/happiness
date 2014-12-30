@@ -12,7 +12,7 @@ class HappinessPlaceChart
         how_do_you_feel = survey.survey_questions.find { |survey_question| survey_question.key == 'how_do_you_feel_right_now' }
         where_are_you = survey.survey_questions.find { |survey_question| survey_question.key == 'where_are_you' }
 
-        key = where_are_you.answer.to_sym
+        key = where_are_you.answer.downcase.to_sym
         values = place_to_happiness[key] << how_do_you_feel.answer.to_i
         place_to_happiness[key] = values
       end
