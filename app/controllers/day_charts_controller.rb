@@ -4,7 +4,7 @@ class DayChartsController < ApplicationController
   def index
     respond_with(
       categories: Date::DAYNAMES,
-      values: HappinessDayChart.new(current_user).calculate
+      values: HappinessDayChart.new(current_user.time_zone).calculate
     )
   end
 end

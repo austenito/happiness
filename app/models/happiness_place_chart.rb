@@ -1,11 +1,7 @@
 class HappinessPlaceChart
-  def initialize(user)
-    @user = user
-  end
-
   def calculate
     place_to_happiness = Hash.new { [] }
-    surveys = @user.surveys
+    surveys = Poptart::Survey.all
 
     surveys.each do |survey|
       if survey.completed?

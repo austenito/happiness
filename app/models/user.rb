@@ -17,10 +17,6 @@ class User < ActiveRecord::Base
     service_user.create_random_survey
   end
 
-  def survey_for_id(survey_id)
-    Survey.new(service_user.survey_for_id(survey_id))
-  end
-
   def service_user
     @service_user ||= Poptart::User.for_id(service_user_id) end
 
