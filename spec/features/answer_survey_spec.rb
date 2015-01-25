@@ -5,15 +5,31 @@ feature 'Answering a scenario' do
     user = create(:user)
     Poptart.authorize(service_user_id: user.service_user_id, user_token: user.token)
 
-    survey = user.create_survey
-    boolean_question = Poptart::BooleanQuestion.create('Do you like poptarts?')
-    multiple_question = Poptart::MultipleResponseQuestion.create('Why do you eat poptarts?', responses: ["It's good", "It's bad"], freeform: true)
-    range_question = Poptart::RangeQuestion.create("How much do you like poptarts", responses: [0, 10])
-    time_question = Poptart::TimeQuestion.create("When do you eat poptarts")
-    boolean_survey_question =  survey.add_question(boolean_question)
-    survey.add_question(multiple_question)
-    survey.add_question(range_question)
-    survey.add_question(time_question)
+    survey = Poptart::Survey.create
+    boolean_question = Poptart::Question.create(
+      'Do you like poptarts?',
+      question_type: 'boolean',
+      responses: [true, false]
+    )
+    multiple_question = Poptart::Question.create(
+      'Why do you eat poptarts?',
+      question_type: 'multiple',
+      responses: ["It's good", "It's bad"]
+    )
+    range_question = Poptart::Question.create(
+      'How much do you like poptarts?',
+      question_type: 'range',
+      responses: [0, 10]
+    )
+    time_question = Poptart::Question.create(
+      'When do you eat poptarts?',
+      question_type: 'time'
+    )
+
+    boolean_survey_question = survey.add_survey_question(Poptart::SurveyQuestion.new('question_id' => boolean_question.id))
+    survey.add_survey_question(Poptart::SurveyQuestion.new('question_id' => multiple_question.id))
+    survey.add_survey_question(Poptart::SurveyQuestion.new('question_id' => range_question.id))
+    survey.add_survey_question(Poptart::SurveyQuestion.new('question_id' => time_question.id))
 
     login_as(user, scope: :user)
     visit survey_survey_question_path(survey.id, boolean_survey_question.id)

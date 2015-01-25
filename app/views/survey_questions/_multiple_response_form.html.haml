@@ -4,8 +4,7 @@
       = simple_form_for :survey_question, method: :put do |form|
         - @survey_question.responses.each do |response|
           = form.input :answer, as: :radio_buttons, collection: [[response, response]], label: false, label_method: :last, value_method: :first
-        - if @survey_question.freeform?
-          = text_field_tag :freeform_answer, '', name: 'survey_question[freeform_answer]'
+        = text_field_tag :freeform_answer, '', name: 'survey_question[freeform_answer]'
         = form.submit "Submit", class: 'btn btn-primary'
         = hidden_field_tag :survey_id, @survey.id
         = hidden_field_tag :id, @survey_question.id

@@ -11,12 +11,12 @@ class SurveyQuestionsController < ApplicationController
   end
 
   def show
-    @survey = current_user.survey_for_id(params[:survey_id])
+    @survey = Survey.for_id(params[:survey_id])
     @survey_question = @survey.survey_question_for_id(params[:id].to_i)
   end
 
   def update
-    survey = current_user.survey_for_id(params[:survey_id])
+    survey = Survey.for_id(params[:survey_id])
     survey_question = survey.survey_question_for_id(params[:id])
     survey_question.update(params)
 
@@ -35,7 +35,7 @@ class SurveyQuestionsController < ApplicationController
   private
 
   def survey
-    @survey ||= current_user.survey.for_id(params[:survey_id])
+    @survey ||= Survey.for_id(params[:survey_id])
   end
 end
 

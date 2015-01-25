@@ -5,11 +5,11 @@ class SurveysController < ApplicationController
   end
 
   def show
-    @survey = current_user.survey_for_id(params[:id])
+    @survey = Survey.for_id(params[:id])
   end
 
   def create
-    survey = current_user.create_random_survey
+    survey = Survey.create
     redirect_to survey_survey_question_path(survey.id, survey.survey_questions.first.id)
   end
 end

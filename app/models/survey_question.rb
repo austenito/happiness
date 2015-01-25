@@ -1,7 +1,7 @@
 class SurveyQuestion
   attr_accessor :survey_question
   delegate :id, :text, :boolean?, :multiple?, :range?, :time?,
-           :responses, :freeform?, :answer, :submit,
+           :responses, :answer, :submit,
            to: :survey_question
 
   def initialize(survey_question)

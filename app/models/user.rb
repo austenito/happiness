@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   end
 
   def create_random_survey
+    # find all of the questions based on ids
+    # add them to the survey (add more than one question)
+    # do the thing
     service_user.create_random_survey
   end
 
@@ -19,8 +22,7 @@ class User < ActiveRecord::Base
   end
 
   def service_user
-    @service_user ||= Poptart::User.for_id(service_user_id)
-  end
+    @service_user ||= Poptart::User.for_id(service_user_id) end
 
   def surveys
     service_user.surveys
