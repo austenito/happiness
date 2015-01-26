@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Answering a scenario' do
   scenario 'it answers a survey', :vcr do
