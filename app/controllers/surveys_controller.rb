@@ -9,7 +9,11 @@ class SurveysController < ApplicationController
   end
 
   def create
-    survey = Survey.create
+    if Random.rand(10) % 3 == 0
+      survey = Survey.create_with_interaction
+    else
+      survey = Survey.create
+    end
     redirect_to survey_survey_question_path(survey.id, survey.survey_questions.first.id)
   end
 end

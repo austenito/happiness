@@ -44,4 +44,21 @@ class Survey
 
     new(survey)
   end
+
+  def self.create_with_interaction
+    survey = Poptart::Survey.create
+    questions = []
+    questions << Poptart::Question.find('how_do_you_feel_right_now')
+    questions << Poptart::Question.find('where_are_you')
+    questions << Poptart::Question.find('what_are_you_doing')
+    questions << Poptart::Question.find('are_you_alone')
+    questions << Poptart::Question.find('how_many_people_are_you_talking_with')
+
+    questions.each do |question|
+      survey_question = Poptart::SurveyQuestion.new('question_id' => question.id)
+      survey.add_survey_question(survey_question)
+    end
+
+    new(survey)
+  end
 end
