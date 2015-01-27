@@ -7,7 +7,7 @@
   .row
     .col-sm-12
       .happinessCharts(ng-controller='chartsController')
+        .happiness-daily-chart{'zoom-line-chart' => '', 'chart-data' => 'dailyChartData', title: 'Happiness Over Time', min: 0, max: 10 }
         .happiness-per-day-chart{'bar-chart' => '', 'chart-data' => 'dayChartData', 'chart-type' => 'day', title: 'How do you feel each day?', min: 0, max: 10 }
         .happiness-per-place-chart{'bar-chart' => '', 'chart-data' => 'placeChartData', 'chart-type' => 'place', title: 'Where do you feel the best?', min: 0, max: 10 }
         .happiness-per-place-activity{'bar-chart' => '', 'chart-data' => 'activityChartData', 'chart-type' => 'place', title: 'How do you feel doing what?', min: 0, max: 10 }
-
