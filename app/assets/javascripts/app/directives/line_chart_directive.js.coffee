@@ -6,10 +6,10 @@ angular.module('app').directive 'zoomLineChart', (Chart) ->
     chartData: '='
 
   link: (scope, element, attrs) ->
-    scope.chart = new Highcharts.Chart
+    scope.chart = new Highcharts.StockChart
       chart:
         zoomType: 'x'
-        type: 'spline'
+        type: 'areaspline'
         renderTo: element[0]
 
       title:
@@ -17,6 +17,9 @@ angular.module('app').directive 'zoomLineChart', (Chart) ->
 
       xAxis:
         type: 'datetime'
+        dateTimeLabelFormats:
+          day: '%b %e'
+          week: '%b %e'
 
       yAxis:
         min: scope.min
@@ -28,12 +31,15 @@ angular.module('app').directive 'zoomLineChart', (Chart) ->
         name: scope.title
       ]
 
+      rangeSelector:
+        allButtonsEnabled: true
+
     scope.$watch 'chartData', (value) =>
       if value
         data = []
         _.each(value.values, (pair) ->
-          data.push([pair[0], pair[1]])
+          data.push([Date.parse(pair[0]), pair[1], pair[1]])
         )
 
         scope.chart.series[0].setData(data)
-        scope.chart.xAxis[0].setCategories(value.categories)
+        scope.chart.rangeSelector.clickButton(0, {},true)

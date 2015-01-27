@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore
-//= require highcharts
+//= require highstock
+//= require highcharts-more
 //= require angular
 //= require app
