@@ -5,9 +5,6 @@ Happiness::Application.routes.draw do
   end
 
   resource :home, only: [:index]
-  resources :day_charts, only: [:index]
-  resources :place_charts, only: [:index]
-  resources :activity_charts, only: [:index]
   resources :charts, only: [:show]
   root to: 'surveys#index'
 end
