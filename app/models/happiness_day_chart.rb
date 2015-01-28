@@ -22,7 +22,7 @@ class HappinessDayChart
       if value.empty?
         day_to_happiness[key] = 0
       else
-        day_to_happiness[key] = value.sum / value.size
+        day_to_happiness[key] = (value.sum / value.size.to_f).round(2)
       end
     end
   end

@@ -17,7 +17,7 @@ class ActivityChart
     end
 
     activity_to_happiness.each do |key, value|
-      activity_to_happiness[key] = value.sum / value.size
+      activity_to_happiness[key] = (value.sum / value.size.to_f).round(2)
     end
     activity_to_happiness
   end

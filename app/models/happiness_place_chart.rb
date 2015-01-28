@@ -15,7 +15,7 @@ class HappinessPlaceChart
     end
 
     place_to_happiness.each do |key, value|
-      place_to_happiness[key] = value.sum / value.size
+      place_to_happiness[key] = (value.sum / value.size.to_f).round(2)
     end
     place_to_happiness
   end

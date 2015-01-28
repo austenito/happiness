@@ -19,7 +19,7 @@ class DailyChart
     end
 
     happiness_by_date.map do |key, value|
-      average_happiness_by_date[key] = value.sum / value.size
+      average_happiness_by_date[key] = (value.sum / value.size.to_f).round(2)
     end
     happiness_by_date.sort
   end
